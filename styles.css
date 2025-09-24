@@ -1,0 +1,275 @@
+:root {
+    --colorWhite: #fff;
+    --colorNeutralCool: #f3f1e7;
+    --colorGreenStarbucks: #1e3932;
+    --colorlightGreenStarbucks: #00704A;
+    --colorBlack: #000;
+    --colorTextBackground: #d4e9e2;
+    --textSize2: 1.4rem;
+    --lineHeightNormal: 1.5;
+    --space-3: 1.6rem;
+    --space-6: 4rem;
+    --space-5: 0.6rem;
+}
+
+body {
+    margin: 0;
+    font-family: SoDoSans, Helvetica Neue, Helvetica, Arial, sans-serif;
+    background-color: var(--colorWhite);
+    color: var(--colorBlack);
+    font-size: var(--textSize2);
+    line-height: var(--lineHeightNormal);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-5) var(--space-6);
+    background-color: var(--colorGreenStarbucks);
+    color: var(--colorWhite);
+    position: relative;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    height: 75px;
+    width: auto;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: var(--space-3);
+}
+
+nav ul li a {
+    color: var(--colorWhite);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Base styles for menu toggle button */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1000;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.menu-toggle div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--colorWhite);
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Mobile menu styles */
+@media (max-width: 768px) {
+    nav {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Active menu state */
+    nav.active {
+        display: block !important;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(30, 57, 50, 0.8);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        animation: slideDown 0.3s ease-out;
+        z-index: 999;
+    }
+
+    nav.active ul {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    nav.active ul li {
+        margin: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav.active ul li:last-child {
+        border-bottom: none;
+    }
+
+    nav.active ul li a {
+        display: block;
+        padding: 15px 20px;
+        transition: background-color 0.3s ease;
+        color: white;
+    }
+
+    nav.active ul li a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Hamburger menu animation */
+    .menu-toggle div.active:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle div.active:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle div.active:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+}
+
+/* Slide down animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero {
+    background-image: url('https://nakiamo.github.io/experiment-1/assets/images/starbucks-1.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--colorWhite);
+    font-size: 3.6rem;
+    font-weight: bold;
+}
+
+.content {
+    padding: var(--space-6);
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 2.8rem;
+    color: var(--colorGreenStarbucks);
+}
+
+.content p {
+    font-size: 1.6rem;
+    margin: 2rem 0;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    padding: 0;
+}
+
+.column {
+    display: flex;
+    align-items: stretch;
+    background-color: var(--colorNeutralCool);
+    border-radius: 12px;
+    overflow: hidden;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .columns {
+        grid-template-columns: 1fr;
+        padding: var(--space-6);
+    }
+
+    .column {
+        flex-direction: row;
+    }
+
+    .column img {
+        flex: 1;
+        width: 100%;
+        max-width: 50%;
+        height: auto;
+        object-fit: cover;
+    }
+}
+
+.column .text {
+    flex: 1;
+    padding: var(--space-6);
+}
+
+.column h2 {
+    color: var(--colorGreenStarbucks);
+    margin-top: 0;
+}
+
+.column p {
+    margin-bottom: 0;
+}
+
+/* Accessibility improvements */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus styles for better accessibility */
+a:focus,
+button:focus {
+    outline: 3px solid var(--colorlightGreenStarbucks);
+    outline-offset: 2px;
+}
+
+/* Skip to main content link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--colorGreenStarbucks);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+} 
